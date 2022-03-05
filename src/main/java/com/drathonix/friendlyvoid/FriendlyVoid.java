@@ -3,6 +3,7 @@ package com.drathonix.friendlyvoid;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,9 +20,12 @@ public final class FriendlyVoid extends JavaPlugin implements Listener {
     }
     @EventHandler
     public void onDeath(PlayerDeathEvent ev){
-        if(ev.getEntity().getLocation().getY() <= 0){
-            ev.setKeepInventory(true);
-            ev.setKeepLevel(true);
+        EntityDamageEvent ede = ev.getEntity().getLastDamageCause();
+        if(ede != null) {
+            if(ede.getCause() == EntityDamageEvent.DamageCause.VOID) {
+                ev.setKeepInventory(true);
+                ev.setKeepLevel(true);
+            }
         }
     }
 }
