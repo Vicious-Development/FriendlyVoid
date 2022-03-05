@@ -1,0 +1,6 @@
+name: FriendlyVoid
+version: @version@
+main: com.drathonix.friendlyvoid.FriendlyVoid
+api-version: 1.15
+authors: [ Drathonix ]
+description: The void won't kill you anymore
